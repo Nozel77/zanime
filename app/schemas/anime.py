@@ -37,7 +37,7 @@ class AnimeUpdate(BaseModel):
 
     class Config:
         orm_mode = True
-        from_attributes = True  # Add this line
+        from_attributes = True  
 
 class AnimeOut(BaseModel):
     id: int

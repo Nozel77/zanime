@@ -3,8 +3,7 @@ from sqlalchemy.orm import Session
 from app.schemas.anime import AnimeCreate, AnimeUpdate, AnimeOut, AnimeListResponse, APIResponse
 from app.models.anime import Anime
 from app.config.db import SessionLocal
-from typing import List
-from app.security.dependencies import admin_required
+
 
 anime_router = APIRouter()
 
@@ -36,7 +35,7 @@ def read_anime(anime_id: int, db: Session = Depends(get_db)):
         "data": AnimeOut.from_orm(db_anime)
     }
 
-@anime_router.post("/store", response_model=APIResponse, dependencies=[Depends(admin_required)])
+@anime_router.post("/store", response_model=APIResponse)
 def create_anime(anime: AnimeCreate, db: Session = Depends(get_db)):
     db_anime = Anime(
         title=anime.title,
@@ -58,7 +57,7 @@ def create_anime(anime: AnimeCreate, db: Session = Depends(get_db)):
     }
 
 
-@anime_router.put("/update/{anime_id}", response_model=APIResponse, dependencies=[Depends(admin_required)])
+@anime_router.put("/update/{anime_id}", response_model=APIResponse)
 def update_anime(anime_id: int, anime: AnimeUpdate, db: Session = Depends(get_db)):
     db_anime = db.query(Anime).filter(Anime.id == anime_id).first()
     if db_anime is None:
@@ -76,7 +75,7 @@ def update_anime(anime_id: int, anime: AnimeUpdate, db: Session = Depends(get_db
     }
 
 
-@anime_router.delete("/delete/{anime_id}", response_model=APIResponse, dependencies=[Depends(admin_required)])
+@anime_router.delete("/delete/{anime_id}", response_model=APIResponse)
 def delete_anime(anime_id: int, db: Session = Depends(get_db)):
     db_anime = db.query(Anime).filter(Anime.id == anime_id).first()
     if db_anime is None:

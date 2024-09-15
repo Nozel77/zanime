@@ -26,11 +26,15 @@ class UserOut(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes=True
 
 class UserRegisterResponse(BaseModel):
     status_code: int
     message: str
     data: UserOut
+
+    class Config:
+        from_attributes=True
 
 class LoginData(BaseModel):
     username: str
@@ -39,7 +43,14 @@ class LoginData(BaseModel):
 class LoginResponse(BaseModel):
     status_code: int
     message: str
-    data: LoginData  # Use LoginData instead of TokenData
+    data: LoginData  
+
+    class Config:
+        orm_mode = True
+
+class TokenData(BaseModel):
+    username: str
+    role: str
 
     class Config:
         orm_mode = True

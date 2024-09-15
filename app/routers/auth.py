@@ -10,7 +10,6 @@ from app.security.jwt import create_access_token, verify_token
 
 auth_router = APIRouter()
 
-# Hashing password setup
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBasic()
 

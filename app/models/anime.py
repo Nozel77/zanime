@@ -6,9 +6,9 @@ class Anime(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(50), index=True)
-    description = Column(String(500),index=True)
-    poster = Column(String(100),index=True)
-    rating  = Column((Double))
+    description = Column(String(500), index=True)
+    poster = Column(String(100), index=True)
+    rating = Column(Double)
     episodes = Column(Integer)
     year = Column(Integer)
     genre = Column(String(50))

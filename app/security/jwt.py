@@ -10,7 +10,7 @@ from app.models.user import User
 from app.config.db import SessionLocal
 from app.config.config import Settings
 from app.config.db import init_db
-from app.schemas.user import LoginData
+from app.schemas.user import TokenData
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
